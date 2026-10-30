@@ -37,23 +37,28 @@ used gpt to generate the dagram, demo frontend and backend
 ### Step-by-Step Setup
 1. Custom VPC Creation
 A dedicated /16 network was deployed to replace default AWS VPC usage.
-
+![01](./screenshots/02_VPC_created.png)
 2. Subnet Segregation
 Two distinct subnets were provisioned: a /24 public tier with dynamic public IP allocation and a /24 private tier for application backends.
-
+![03](./screenshots/03_subnet_created.png)
 3. Internet Gateway Attachment
 The gateway provides two-way internet routing for the public subnet.
-
+![03](./screenshots/04_igw_created_and_connected_to_VPC.png)
 4. NAT Gateway & Elastic IP Allocation
 The NAT Gateway provides outbound network address translation for the private subnet without allowing unsolicited incoming traffic.
-
+![05](./screenshots/05_NAT-gateway_created_and_recieved_EIP.png)
 5. Routing Architecture
 -shopbondhu-public-rt routes 0.0.0.0/0 to shopbondhu-igw.
 -shopbondhu-private-rt routes 0.0.0.0/0 to shopbondhu-nat.
-
+![06](./screenshots/06_Route_table_created_and_made_the_subnet_public_by_configure_with_IGW.png)
+![06](./screenshots/07_Route_table_created_and_made_the_subnet_private_configured_with_NAT.png)
 6. Security Groups and EC2 Instances
 Security groups enforce least-privilege access: the backend server accepts SSH traffic exclusively from the web server security group.
 
+![08](./screenshots/08_security_group_web_anyone_can_access.png)
+![09](./screenshots/09_sg-backend_only_web_app_can_access.png)
+![09](./screenshots/10_ec2_created_for_web_server.png)
+![09](./screenshots/11_ec2_created_for_backend.png)
 #### Nginx & Frontend Deployment
 Nginx was installed on shopbondhu-web, enabled across system reboots, and populated with the ShopBondhu static landing page files.
 
