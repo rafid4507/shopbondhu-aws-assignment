@@ -1,5 +1,13 @@
 # Compiled class file
 *.class
+*.pem
+pem/
+*.key
+*.id_rsa
+.env
+.DS_Store
+*.temp
+EOF
 
 # Log file
 *.log
